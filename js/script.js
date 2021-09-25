@@ -37,4 +37,33 @@ hearts[0].replaceWith(circles[0]); // заменяет один блок дру�
 div.innerHTML = '<h1>Hello world</h1>'; // добавление html кода в блоки
 //div.textContent = '<h1>Hello world</h1>'; // добавление текста в блоки, html не работает
 
-div.insertAdjacentElement('beforebegin', '<h2>Hello</h2>');
+// обработчики событий
+const btn = document.querySelector('button');
+btn.addEventListener('click', () => {
+  alert('Click');
+});
+
+btn.addEventListener('mouseenter', (e) =>{
+  console.log(e.target);
+  console.log('hover');
+});
+
+btn.addEventListener('click', (e) =>{
+  console.log(e.target);
+  e.target.remove(); // удаляет элемент
+});
+
+const deleteElemement = function(e){
+  console.log(e.target);
+};
+
+btn.removeEventListener('click', deleteElemement);
+
+// отмена стандартного поведения браузера
+
+const link = document.querySelector('a');
+
+link.addEventListener('click', function(e) {
+  e.preventDefault(); // отменяет стандартное поведение 
+  console.log(e.target);
+});
