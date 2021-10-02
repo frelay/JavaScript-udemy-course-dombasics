@@ -67,3 +67,25 @@ link.addEventListener('click', function(e) {
   e.preventDefault(); // отменяет стандартное поведение 
   console.log(e.target);
 });
+
+// ClassList и делегирование событий
+
+const buttons = document.querySelectorAll('button'),
+      buttonsBlock = document.querySelector('.buttons_block');
+
+console.log(buttons[0].classList.add('btn_1')); // навешиваем класс на элемент
+// Простой интерактив, навешиваем класс и если он есть убираем его
+// Так же можно сделать с помощью buttons[2].classList.toggle('button_red');
+buttons[2].addEventListener('click', () => {
+  if (!buttons[2].classList.contains('button_red')) {
+    buttons[2].classList.add('button_red');
+  } else {
+    buttons[2].classList.remove('button_red');
+  }
+});
+// Делегирование событий с родительского блока его потомкам(кнопкам)
+buttonsBlock.addEventListener('click', (e) => {
+  if (e.target && e.target.tagName === 'BUTTON') {
+    console.log('hello');
+  }  
+});
